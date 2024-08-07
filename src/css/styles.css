@@ -1,25 +1,214 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-@import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
+/* -----------------form----------------- */
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
+body {
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1440px;
+  background-color: #d826b4;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 36px;
+  margin-bottom: 32px;
+  gap: 8px;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+.search-form input {
+  width: 256px;
+  height: 38px;
+  outline: none;
+  padding: 0px 16px 0px 16px;
+  color: #2e2f42;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  transition: border 0.3s ease;
+}
+
+.search-form input::placeholder {
+  color: #808080;
+}
+
+.search-form input:hover {
+  border: 1px solid #000;
+}
+
+.search-form input:focus {
+  border: 1px solid #4e75ff;
+}
+
+.search-form button {
+  font-weight: 500;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  padding: 0;
+  width: 91px;
+  height: 40px;
+  background-color: #4e75ff;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+  background-color: #6c8cff;
+}
+
+
+
+
+/* -----------------gallery----------------- */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.gallery li {
+  border: 1px solid #808080;
+  width: 360px;
+  height: 200px;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.gallery li:hover {
+  transform: scale(1.5);
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  height: 152px;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  height: 48px;
+}
+
+.info p {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.info>p>spann {
+  font-weight: 400;
+  line-height: 2;
+}
+
+/* -----------------loader----------------- */
+
+
+.loader {
+  width: 108px;
+  height: 16px;
+  background:
+    radial-gradient(circle 8px at 8px center, #FFF 100%, transparent 0),
+    radial-gradient(circle 8px at 8px center, #FFF 100%, transparent 0);
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  position: relative;
+  animation: ballX 10s linear infinite;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FFF;
+  inset: 0;
+  margin: auto;
+  animation: moveX 10s cubic-bezier(0.5, 300, 0.5, -300) infinite;
+}
+
+@keyframes ballX {
+
+  0%,
+  25%,
+  50%,
+  75%,
+  100% {
+    background-position: 25% 0, 75% 0
+  }
+
+  40% {
+    background-position: 25% 0, 85% 0
+  }
+
+  90% {
+    background-position: 15% 0, 75% 0
+  }
+}
+
+@keyframes moveX {
+  100% {
+    transform: translate(0.15px)
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+
+.load-more {
+  /* display: block; */
+  margin: 20px auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 125px;
+  height: 40px;
+  background: #4e75ff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.load-more:hover {
+  background-color: #6c8cff;
 }
