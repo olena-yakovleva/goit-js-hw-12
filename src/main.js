@@ -15,11 +15,7 @@ const loadMoreBtn = document.querySelector('#load-more');
 
 let query = '';
 let page = 1;
-
-// form.addEventListener('submit', event => {
-//   event.preventDefault();
-//   const queryInput = event.currentTarget.elements.query;
-//   const query = queryInput.value.trim();
+let totalHits = 0;
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
@@ -38,29 +34,10 @@ form.addEventListener('submit', async event => {
   hideLoadMoreButton();
   showLoader();
 
-  //   fetchImages(query)
-  //     .then(data => {
-  //       if (data.hits.length === 0) {
-  //         iziToast.error({
-  //           message:
-  //             'Sorry, there are no images matching your search query. Please try again!',
-  //           position: 'topRight',
-  //         });
-  //       } else {
-  //         renderImages(data.hits);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       iziToast.error({ title: 'Error', message: error.message });
-  //     })
-  //     .finally(() => {
-  //       hideLoader();
-  //       queryInput.value = '';
-  //     });
-  // });
-
   try {
     const data = await fetchImages(query, page);
+    totalHits = data.totalHits;
+
     if (data.hits.length === 0) {
       iziToast.error({
         message:
@@ -69,7 +46,9 @@ form.addEventListener('submit', async event => {
       });
     } else {
       renderImages(data.hits);
-      showLoadMoreButton();
+      if (totalHits > 15) {
+        showLoadMoreButton();
+      }
     }
   } catch (error) {
     iziToast.error({ title: 'Error', message: error.message });
@@ -86,7 +65,7 @@ loadMoreBtn.addEventListener('click', async () => {
     const data = await fetchImages(query, page);
     renderImages(data.hits);
 
-    if (page * 15 >= data.totalHits) {
+    if (page * 15 >= totalHits) {
       hideLoadMoreButton();
       iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
@@ -102,6 +81,14 @@ loadMoreBtn.addEventListener('click', async () => {
   }
 });
 
+function hideLoadMoreButton() {
+  loadMoreBtn.classList.add('hidden');
+}
+
+function showLoadMoreButton() {
+  loadMoreBtn.classList.remove('hidden');
+}
+
 function smoothScroll() {
   const { height: cardHeight } = document
     .querySelector('.gallery')
@@ -111,3 +98,6 @@ function smoothScroll() {
     behavior: 'smooth',
   });
 }
+
+// Hide the Load More button initially
+hideLoadMoreButton();

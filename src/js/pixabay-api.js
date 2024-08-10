@@ -24,7 +24,6 @@ export async function fetchImages(query, page = 1, perPage = 15) {
     page,
     per_page: perPage,
   });
-
   //   try {
   //     const response = await fetch(`${BASE_URL}?${params.toString()}`);
   //     if (!response.ok) {
