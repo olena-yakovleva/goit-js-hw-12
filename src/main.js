@@ -20,20 +20,29 @@ let totalHits = 0;
 form.addEventListener('submit', async event => {
   event.preventDefault();
 
-  clearGallery();
-  hideLoadMoreButton();
-  showLoader();
-
   query = event.currentTarget.elements.query.value.trim();
   page = 1;
+
+  //   if (!query) {
+  //     iziToast.error({
+  //       message: 'Please enter a search query!',
+  //       position: 'topRight',
+  //     });
+  //     return;
+  //   }
 
   if (!query) {
     iziToast.error({
       message: 'Please enter a search query!',
       position: 'topRight',
     });
+    hideLoader();
     return;
   }
+
+  clearGallery();
+  hideLoadMoreButton();
+  showLoader();
 
   try {
     const data = await fetchImages(query, page);
