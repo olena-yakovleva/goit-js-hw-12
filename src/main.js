@@ -19,6 +19,11 @@ let totalHits = 0;
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
+
+  clearGallery();
+  hideLoadMoreButton();
+  showLoader();
+
   query = event.currentTarget.elements.query.value.trim();
   page = 1;
 
@@ -29,10 +34,6 @@ form.addEventListener('submit', async event => {
     });
     return;
   }
-
-  clearGallery();
-  hideLoadMoreButton();
-  showLoader();
 
   try {
     const data = await fetchImages(query, page);
@@ -100,4 +101,4 @@ function smoothScroll() {
 }
 
 // Hide the Load More button initially
-hideLoadMoreButton();
+// hideLoadMoreButton();
