@@ -81,13 +81,13 @@ loadMoreBtn.addEventListener('click', async () => {
   }
 });
 
-function hideLoadMoreButton() {
-  loadMoreBtn.classList.add('hidden');
-}
+// function hideLoadMoreButton() {
+//   loadMoreBtn.classList.add('hidden');
+// }
 
-function showLoadMoreButton() {
-  loadMoreBtn.classList.remove('hidden');
-}
+// function showLoadMoreButton() {
+//   loadMoreBtn.classList.remove('hidden');
+// }
 
 function smoothScroll() {
   const { height: cardHeight } = document
